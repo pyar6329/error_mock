@@ -2,6 +2,7 @@ use anyhow::Error;
 // use std::fmt::Display;
 use std::fmt::Debug;
 use derive_more::Display as DeriveDisplay;
+use derive_more::Debug as DeriveDebug;
 use super::BusinessLogicError;
 
 #[derive(Debug, DeriveDisplay)]
@@ -11,17 +12,18 @@ pub struct Crowdfunding {
     pub name: String,
 }
 
-#[derive(Debug, DeriveDisplay)]
+#[derive(DeriveDebug, DeriveDisplay)]
 #[display("nothing")]
 pub struct NewCrowdfunding {
     pub name: String,
+    #[debug(skip)]
+    pub description: String,
+    pub user_id: u64,
 }
 
-pub trait CrowdfundingRepository<T>
-where
-    T: Debug,
+pub trait CrowdfundingRepository
 {
-    type ResponseError: Into<Error> + BusinessLogicError<T>;
+    type ResponseError: Into<Error> + BusinessLogicError;
     fn get_crowdfunding(&self, id: &u64) -> Result<Crowdfunding, Error>;
     fn create_crowdfunding(&self, crowdfunding: &NewCrowdfunding) -> Result<(), Error>;
 }

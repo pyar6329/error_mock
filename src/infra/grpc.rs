@@ -14,7 +14,9 @@ pub fn grpc_get_crowdfunding() -> Result<Crowdfunding, Error> {
 
 pub fn grpc_create_crowdfunding() -> Result<(), Error> {
   let name = "foobar".to_string();
-  let new_crowdfunding = NewCrowdfunding {name};
+  let description = "hogehoge".to_string();
+  let user_id: u64 = 1;
+  let new_crowdfunding = NewCrowdfunding {name, description, user_id};
   let repo = CrowdfundingRepositoryImpl;
 
   let _ = create_crowdfunding(&repo, &new_crowdfunding)?;

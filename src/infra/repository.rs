@@ -25,21 +25,19 @@ impl Default for CrowdfundingRepositoryError {
     }
 }
 
-impl<T> BusinessLogicError<T> for CrowdfundingRepositoryError
-where
-    T: Debug
+impl BusinessLogicError for CrowdfundingRepositoryError
 {
-    fn not_found(resource: &T) -> Self {
+    fn not_found(resource: &impl Debug) -> Self {
         let e = Self::NotFound(format!("{:?}", resource));
         error!("{}", &e);
         e
     }
-    fn already_exist(resource: &T) -> Self {
+    fn already_exist(resource: &impl Debug) -> Self {
         let e = Self::AlreadyExist(format!("{:?}", resource));
         error!("{}", &e);
         e
     }
-    fn permission_denied(resource: &T) -> Self {
+    fn permission_denied(resource: &impl Debug) -> Self {
         let e = Self::PermissionDenied(format!("{:?}", resource));
         error!("{}", &e);
         e
@@ -57,9 +55,7 @@ where
 
 pub struct CrowdfundingRepositoryImpl;
 
-impl<T> CrowdfundingRepository<T> for CrowdfundingRepositoryImpl
-where
-    T: Debug
+impl CrowdfundingRepository for CrowdfundingRepositoryImpl
 {
     type ResponseError = CrowdfundingRepositoryError;
 
