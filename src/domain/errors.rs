@@ -5,6 +5,9 @@ pub trait BusinessLogicError<T>: Into<Error>
 where
     T: Debug,
 {
+    // TOOD:
+    // 引数をTではなく、Into<String>とかにしてあげると、ToStringを実装すれば内部でinto()呼び出しにより共通化しやすい？
+    // ただこれ外部で&strやStringにして渡す実装も出来てしまうので、もうちょっと制約をかけたい
     fn not_found(resource: &T) -> Self;
     fn already_exist(resource: &T) -> Self;
     fn permission_denied(resource: &T) -> Self;
