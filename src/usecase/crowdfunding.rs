@@ -4,6 +4,9 @@ use tracing::debug;
 
 pub fn get_crowdfunding<E>(
     repo: &impl CrowdfundingRepository<u64, ResponseError = E>,
+    // repo: &impl CrowdfundingRepository<NewCrowdfunding, ResponseError = E>
+    // TODO:
+    // これでも通ってしまう。引数をTにすると何でも渡せてしまうので、BusinessLogicErrorはGenericsを使わないようにした方が良さげ
     id: &u64,
 ) -> Result<Crowdfunding, Error>
 where
