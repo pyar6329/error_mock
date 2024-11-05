@@ -3,7 +3,7 @@ use anyhow::Error;
 use tracing::debug;
 
 pub fn get_crowdfunding<E>(
-    repo: &impl CrowdfundingRepository<NewCrowdfunding, ResponseError = E>,
+    repo: &impl CrowdfundingRepository<u64, ResponseError = E>,
     id: &u64,
 ) -> Result<Crowdfunding, Error>
 where
