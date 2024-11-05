@@ -1,0 +1,12 @@
+[package]
+name = "error_mock"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = "1.0"
+anyhow = "1.0"
+derive_more = { version = "1.0", default-features = false, features = ["from", "deref", "display"] }
+strum = { version = "0.26", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["json", "env-filter"] }
