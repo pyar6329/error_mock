@@ -10,3 +10,10 @@ derive_more = { version = "1.0", default-features = false, features = ["from", "
 strum = { version = "0.26", features = ["derive"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["json", "env-filter"] }
+# tokio = { version = "1.41", default-features = false, features = ["rt-multi-thread", "macros", "signal"]}
+tokio = { version = "1.41", default-features = false, features = ["rt-multi-thread", "macros"]}
+reqwest-middleware = "0.3.3"
+reqwest = "0.12.9"
+http = "1.1.0"
+hyper = "1.5.0"
+async-trait = "0.1.83"

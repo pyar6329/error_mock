@@ -1,19 +1,18 @@
-use anyhow::{Result, Error};
-use tracing::debug;
+use anyhow::{Error, Result};
 
 use error_mock::{
-  common::setup_tracing,
-  infra::grpc::{
-    grpc_create_crowdfunding, grpc_get_crowdfunding
-  },
+    common::setup_tracing,
+    infra::client::foobar,
+    infra::grpc::{grpc_create_crowdfunding, grpc_get_crowdfunding},
 };
 
-
-fn main() -> Result<(), Error> {
+#[tokio::main]
+async fn main() -> Result<(), Error> {
     setup_tracing()?;
-    grpc_create_crowdfunding();
+    let _ = grpc_create_crowdfunding();
     let _ = grpc_get_crowdfunding();
+
+    let _ = foobar().await;
 
     Ok(())
 }
-
