@@ -193,6 +193,8 @@ dependencies = [
  "hyper",
  "reqwest",
  "reqwest-middleware",
+ "serde",
+ "serde_json",
  "strum",
  "thiserror",
  "tokio",
